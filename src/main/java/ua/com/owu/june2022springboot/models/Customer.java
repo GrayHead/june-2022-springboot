@@ -32,7 +32,15 @@ public class Customer {
     @JsonView({Views.Admin.class, Views.Client.class})
     private String email;
 
+    private String avatar; // path to image
+
     public Customer(String name) {
         this.name = name;
+    }
+
+    public Customer(String name, String email, String avatar) {
+        this.name = name;
+        this.email = email;
+        this.avatar = avatar;
     }
 }
