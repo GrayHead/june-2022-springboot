@@ -16,7 +16,9 @@ import ua.com.owu.june2022springboot.services.CustomerService;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/customers")
@@ -89,12 +91,27 @@ public class CustomerController {
         File file = new File(pathname);
         avatar.transferTo(file);
         customerService.save(customer, file);
-
-
     }
 
 
 //    <img src= '/img/tom.jpg'>
+
+//    @PatchMapping("/{id}")
+//    public void patch(@PathVariable int id, @RequestBody Customer customer) {
+//        Customer cus = customerService.getCustomerById(id);
+//        cus.setName(customer.getName());
+//        customerService.updateCustomer(cus);
+//    }
+
+
+//    @PatchMapping("/{id}")
+//    public void patch(@PathVariable int id, @RequestParam String name) {
+//        Customer cus = customerService.getCustomerById(id);
+//        cus.setName(name);
+//        customerService.updateCustomer(cus);
+//    }
+
+
 
 }
 
