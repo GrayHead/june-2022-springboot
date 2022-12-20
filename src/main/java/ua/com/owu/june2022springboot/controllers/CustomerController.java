@@ -37,7 +37,6 @@ public class CustomerController {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveCustomer(@RequestBody Customer customer) {
-//        customerDAO.save(customer);
         customerService.save(customer);
 
     }
@@ -65,16 +64,17 @@ public class CustomerController {
 
     @GetMapping("/name/{name}") // /customers/name/vasya
     public ResponseEntity<List<Customer>> getCustomersByname(@PathVariable String name) {
-
-
-//        return new ResponseEntity<>(customerDAO.getByName("kokos"),HttpStatusCode.valueOf(200));
-//        return new ResponseEntity<>(customerDAO.findCustomerByName("kokos"),HttpStatusCode.valueOf(200));
-//        return new ResponseEntity<>(customerService.customerListByName("kokos"), HttpStatusCode.valueOf(200));
         return customerService.customerListByName(name);
     }
-}
 
-// id namme surname email
-//CRUD  post, get all, get id, patch id, delete id
-// get all name , get all surname
+
+    @GetMapping("/activate/{id}")
+    public void activateCustomer(@PathVariable int id) {
+        Customer customer = customerService.getCustomerById(id);
+        customer.setActivated(true);
+        customerService.updateCustomer(customer);
+
+    }
+
+}
 

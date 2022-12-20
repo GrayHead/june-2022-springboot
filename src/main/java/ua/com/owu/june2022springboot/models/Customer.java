@@ -24,8 +24,13 @@ public class Customer {
     private int id;
     @NotEmpty
     @Length(min = 3, max = 12, message = "achtung name")
-    @JsonView({Views.Admin.class,Views.Client.class})
+    @JsonView({Views.Admin.class, Views.Client.class})
     private String name;
+    @JsonView({Views.Admin.class, Views.Client.class})
+    private boolean isActivated = false;
+
+    @JsonView({Views.Admin.class, Views.Client.class})
+    private String email;
 
     public Customer(String name) {
         this.name = name;

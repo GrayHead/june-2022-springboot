@@ -14,14 +14,11 @@ import java.util.List;
 public class CustomerService {
 
     private CustomerDAO customerDAO;
+    private MailService mailService;
 
     public void save(Customer customer) {
-        if (customer.getId() > 0) {
-            customerDAO.save(customer);
-        } else {
-            throw new RuntimeException("id < 0!!!!!!!!");
-        }
-
+        customerDAO.save(customer);
+        mailService.send(customer);
     }
 
     public ResponseEntity<List<Customer>> customerListByName(String name) {
@@ -33,6 +30,15 @@ public class CustomerService {
             throw new RuntimeException();
         }
 
+    }
+
+    public Customer getCustomerById(int id) {
+        return customerDAO.findById(id).get();
+
+    }
+
+    public void updateCustomer(Customer customer) {
+        customerDAO.save(customer);
 
     }
 
