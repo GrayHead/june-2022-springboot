@@ -49,6 +49,38 @@ public class MainController {
         return new ResponseEntity<>(this.customers, HttpStatusCode.valueOf(200));
 
     }
+
+
+    // PUT  (replace)
+    @PutMapping("/customers/{id}")
+    public ResponseEntity replaceCustomer(@PathVariable int id, @RequestBody Customer customer) {
+        Customer custo = customers.stream()
+                .filter(customer1 -> customer1.getId() == id)
+                .findFirst()
+                .get();
+        System.out.println(custo);
+        int indexOf = customers.indexOf(custo);
+        customers.set(indexOf, customer);
+        return new ResponseEntity(HttpStatusCode.valueOf(201));
+    }
+
+
+    // patch - update
+
+    @PatchMapping("/customers/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateCustomer(@PathVariable int id, @RequestBody Customer customer) {
+        for (Customer item : customers) {
+            if (item.getId() == id) {
+                item.setId(customer.getId());
+                item.setName(customer.getName());
+            }
+        }
+
+
+    }
+
+
 }
 
 
