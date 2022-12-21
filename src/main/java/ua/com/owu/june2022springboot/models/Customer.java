@@ -2,14 +2,12 @@ package ua.com.owu.june2022springboot.models;
 
 
 import com.fasterxml.jackson.annotation.JsonView;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import ua.com.owu.june2022springboot.models.views.Views;
 
@@ -31,6 +29,11 @@ public class Customer {
 
     @JsonView({Views.Admin.class, Views.Client.class})
     private String email;
+
+
+    @ToString.Exclude
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private ActivationToken activationToken;
 
     public Customer(String name) {
         this.name = name;
