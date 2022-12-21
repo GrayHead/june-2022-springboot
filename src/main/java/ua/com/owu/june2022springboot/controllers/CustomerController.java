@@ -2,7 +2,6 @@ package ua.com.owu.june2022springboot.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import ua.com.owu.june2022springboot.models.dto.CustomerDTO;
 import ua.com.owu.june2022springboot.models.views.Views;
 import ua.com.owu.june2022springboot.services.CustomerService;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
