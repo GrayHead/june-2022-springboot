@@ -19,6 +19,6 @@ public class Customer {
     @Column(unique = true)
     private String login;
     private String password;
-    private String role = "ROLE_CLIENT";
+    private String role = "ROLE_USER";
 
 }
