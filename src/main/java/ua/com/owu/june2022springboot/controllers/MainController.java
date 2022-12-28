@@ -19,6 +19,8 @@ import ua.com.owu.june2022springboot.models.Customer;
 import ua.com.owu.june2022springboot.models.dto.CustomerDTO;
 
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @RestController
 @AllArgsConstructor
@@ -48,8 +50,10 @@ public class MainController {
         if (authenticate != null) {
             String jwtToken = Jwts.builder()
                     .setSubject(authenticate.getName())
+                    .setExpiration(new Date())
                     .signWith(SignatureAlgorithm.HS512, "okten".getBytes(StandardCharsets.UTF_8))
                     .compact();
+
             System.out.println(jwtToken);
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", "Bearer " + jwtToken);
@@ -62,7 +66,7 @@ public class MainController {
     }
 
     @GetMapping("/secure")
-    public String secure () {
-            return "secure data";
+    public String secure() {
+        return "secure data";
     }
 }
